@@ -91,7 +91,7 @@ def main() -> None:
 
     if not os.path.isdir(args.repo) or not os.path.isdir(os.path.join(args.repo, ".git")):
         raise RuntimeError(f"Invalid repo path: {args.repo}")
-    if args.token is None or not args.token.startswith("ghp"):
+    if args.token is None or not args.token.startswith(("ghp", "github")):
         raise RuntimeError("Invalid GitHub token")
     os.makedirs(CACHE_DIR, exist_ok=True)
 
