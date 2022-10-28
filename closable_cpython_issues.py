@@ -39,8 +39,10 @@ def get_issue(issue: int, token: str, staleness: float) -> dict[str, Any]:
     response.raise_for_status()
     data = response.json()
 
-    with open(cache_file, "w") as f:
+    tmp_cache_file = cache_file + ".tmp"
+    with open(tmp_cache_file, "w") as f:
         json.dump({"fetch_time": now.isoformat(), "issue": data}, f)
+    os.replace(tmp_cache_file, cache_file)
     return data
 
 
