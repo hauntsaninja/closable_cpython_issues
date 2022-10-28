@@ -4,12 +4,20 @@ import json
 import os
 import re
 import subprocess
+import time
 from collections import defaultdict
-from typing import Any
+from typing import Any, Mapping
 
 import requests
 
 CACHE_DIR = os.path.expanduser("~/.cache/cpython_closable_issues")
+
+
+def _delay_from_headers(headers: Mapping[str, str]) -> float:
+    delay = max(0, float(headers.get("X-RateLimit-Reset", 0)) - time.time())
+    delay /= max(1, int(headers.get("X-RateLimit-Remaining", 1)))
+    delay *= 1.1
+    return delay
 
 
 def get_issue(issue: int, token: str, staleness: float) -> dict[str, Any]:
@@ -29,15 +37,22 @@ def get_issue(issue: int, token: str, staleness: float) -> dict[str, Any]:
         # If an issue has been updated recently, it's an indicator it may be updated again soon,
         # so invalidate the cache sooner.
         deadline = fetch_time + staleness * (fetch_time - last_update_time)
-        deadline = min(deadline, fetch_time + datetime.timedelta(days=7))
+        deadline = min(deadline, fetch_time + datetime.timedelta(days=30))
         if now < deadline:
             return data["issue"]
 
+    request_time = -time.perf_counter()
     url = f"https://api.github.com/repos/python/cpython/issues/{issue}"
     headers = {"Accept": "application/vnd.github.v3+json", "Authorization": f"token {token}"}
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     data = response.json()
+    request_time += time.perf_counter()
+
+    if int(response.headers.get("X-RateLimit-Remaining", 0)) < 500:
+        delay = _delay_from_headers(response.headers)
+        delay = max(0, min(120, delay - request_time))
+        time.sleep(delay)
 
     tmp_cache_file = cache_file + ".tmp"
     with open(tmp_cache_file, "w") as f:
@@ -85,9 +100,9 @@ def main() -> None:
     )
     parser.add_argument(
         "--staleness",
-        default=1.0,
+        default=0.1,
         type=float,
-        help="How stale the issue cache can get (0: not at all, 1: default, 100: very stale)",
+        help="How stale the issue cache can get (0: not at all, 0.1: default, 100: very stale)",
     )
     args = parser.parse_args()
 
