@@ -14,8 +14,9 @@ CACHE_DIR = os.path.expanduser("~/.cache/cpython_closable_issues")
 
 
 def _delay_from_headers(headers: Mapping[str, str]) -> float:
-    delay = max(0, float(headers.get("X-RateLimit-Reset", 0)) - time.time())
-    delay /= max(1, int(headers.get("X-RateLimit-Remaining", 1)))
+    ratelimit_reset = float(headers.get("X-RateLimit-Reset", 0)) + 1
+    ratelimit_remaining = int(headers.get("X-RateLimit-Remaining", 1)) - 1
+    delay = max(0, ratelimit_reset - time.time()) / max(1, ratelimit_remaining)
     delay *= 1.1
     return delay
 
@@ -51,7 +52,7 @@ def get_issue(issue: int, token: str, staleness: float) -> dict[str, Any]:
 
     if int(response.headers.get("X-RateLimit-Remaining", 0)) < 500:
         delay = _delay_from_headers(response.headers)
-        delay = max(0, min(120, delay - request_time))
+        delay = max(0, min(300, delay - request_time))
         time.sleep(delay)
 
     tmp_cache_file = cache_file + ".tmp"
