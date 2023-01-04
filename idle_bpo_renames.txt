@@ -1,0 +1,112 @@
+bpo-35690: Add fix and tests for idlelib.debugger module
+gh-79871: Add fix and tests for idlelib.debugger module
+https://github.com/python/cpython/pull/11451
+
+bpo-37768: IDLE: show help(object) output in a text viewing window
+gh-81949: IDLE: show help(object) output in a text viewing window
+https://github.com/python/cpython/pull/15140
+
+bpo-25522: IDLE "Save As" warnings
+gh-69708: IDLE "Save As" warnings
+https://github.com/python/cpython/pull/17051
+
+bpo-27465: Make IDLE help source menu entries unique and sorted
+gh-71652: Make IDLE help source menu entries unique and sorted
+https://github.com/python/cpython/pull/17093
+
+bpo-17642: Add hotkeys to resize IDLE's font
+gh-61842: Add hotkeys to resize IDLE's font
+https://github.com/python/cpython/pull/17107
+
+bpo-26949: IDLE: Fix hanging when raise KeyboardInterrupt with debugger open
+gh-71136: IDLE: Fix hanging when raise KeyboardInterrupt with debugger open
+https://github.com/python/cpython/pull/1711
+
+bpo-33046: An IDLE option to strip trailing whitespace on save
+gh-77227: An IDLE option to strip trailing whitespace on save
+https://github.com/python/cpython/pull/17201
+
+bpo-6699: IDLE: Warn the user if a file will be overwritten when saving
+gh-50948: IDLE: Warn the user if a file will be overwritten when saving
+https://github.com/python/cpython/pull/17578
+
+bpo-13586: IDLE: Enter the selected text when opening the "Replace" dialog
+gh-57795: IDLE: Enter the selected text when opening the "Replace" dialog
+https://github.com/python/cpython/pull/17593
+
+bpo-36595: IDLE: Add search to the "Squeezed Output Viewer"
+gh-80776: IDLE: Add search to the "Squeezed Output Viewer"
+https://github.com/python/cpython/pull/17614
+
+bpo-14111: IDLE: Add interrupt handle when open debugger
+gh-58319: IDLE: Add interrupt handle when open debugger
+https://github.com/python/cpython/pull/1821
+
+bpo-39666: Refactor common code between hyperparser and editor
+gh-83847: Refactor common code between hyperparser and editor
+https://github.com/python/cpython/pull/18539
+
+bpo-6143: "Clear and restart" IDLE shell windows
+gh-50393: "Clear and restart" IDLE shell windows
+https://github.com/python/cpython/pull/21682
+
+bpo-41608: IDLE smart backspace not remove multiple spaces if not at start of line
+gh-85774: IDLE smart backspace not remove multiple spaces if not at start of line
+https://github.com/python/cpython/pull/21934
+
+bpo-694339: IDLE: Dedenting with shift+tab
+gh-38066: IDLE: Dedenting with shift+tab
+https://github.com/python/cpython/pull/2210
+
+bpo-42239: Add tests for idlelib.calltip
+gh-86405: Add tests for idlelib.calltip
+https://github.com/python/cpython/pull/23098
+
+bpo-29926: IDLE: Fix blocking function ignore SIGINT
+gh-74112: IDLE: Fix blocking function ignore SIGINT
+https://github.com/python/cpython/pull/2466
+
+bpo-23937: IDLE maximise on load
+gh-68125: IDLE maximise on load
+https://github.com/python/cpython/pull/25946
+
+bpo-21261: IDLE: add completion of dict keys of type str
+gh-65460: IDLE: add completion of dict keys of type str
+https://github.com/python/cpython/pull/26039
+
+bpo-31529: IDLE: Add docstrings and tests to some editor.py functions
+gh-75710: IDLE: Add docstrings and tests to some editor.py functions
+https://github.com/python/cpython/pull/3669
+
+bpo-21937: IDLE: Fix use of unsaved indicator in titlebar of shell window
+gh-66136: IDLE: Fix use of unsaved indicator in titlebar of shell window
+https://github.com/python/cpython/pull/3701
+
+bpo-32548: IDLE: Convert labels to hyperlinks in help_about
+gh-76729: IDLE: Convert labels to hyperlinks in help_about
+https://github.com/python/cpython/pull/5178
+
+bpo-5594: IDLE startup configuration
+gh-49844: IDLE startup configuration
+https://github.com/python/cpython/pull/5541
+
+bpo-33397: IDLE Help: Modifications for font size
+gh-77578: IDLE Help: Modifications for font size
+https://github.com/python/cpython/pull/6665
+
+bpo-33964: IDLE macosx - removed unused local dict.
+gh-78145: IDLE macosx - removed unused local dict.
+https://github.com/python/cpython/pull/7926
+
+bpo-34774: Use user-selected color theme for Help => IDLE Help.
+gh-78955: Use user-selected color theme for Help => IDLE Help.
+https://github.com/python/cpython/pull/9502
+
+bpo-21880: IDLE: Ability to run 3rd party code checkers
+gh-66079: IDLE: Ability to run 3rd party code checkers
+https://github.com/python/cpython/pull/9802
+
+bpo-34976: IDLE: first updated working version of a search bar
+gh-79157: IDLE: first updated working version of a search bar
+https://github.com/python/cpython/pull/9855
+
